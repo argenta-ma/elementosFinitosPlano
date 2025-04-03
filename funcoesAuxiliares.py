@@ -12,8 +12,6 @@ Módulo para as funções auxiliares:
 import numpy as np
 import matplotlib.pyplot as plt
 
-import sympy as sp #<-- para mostrar os valores para o texto!!!
-
 ### FUNÇÕES AUXILIARES DE TRELIÇAS PLANAS -------------------------------------
 
 def compSenCos(xi, xj, yi, yj):
@@ -61,17 +59,6 @@ def matRig_TP(E, A, L, s, c):
                           [c*s, s**2, -c*s, -s**2],
                           [-c**2, -c*s, c**2, c*s],
                           [-c*s, -s**2, c*s, s**2]])
-    
-    # #valores para o texto:
-    # print('Matriz de rigidez do elemento só com os sen e cos:')
-    # parcial = np.around(np.array([[c**2, c*s, -c**2, -c*s],
-    #                       [c*s, s**2, -c*s, -s**2],
-    #                       [-c**2, -c*s, c**2, c*s],
-    #                       [-c*s, -s**2, c*s, s**2]]), 3)
-    # print(sp.latex(sp.Matrix(parcial)).replace('.', ','))
-    
-    # print('Matriz de rigidez do elemento completa:')
-    # print(sp.latex(sp.Matrix(np.around(keg, 3))).replace('.', ','))
     
     return keg
 
@@ -203,48 +190,3 @@ def visual_TP(coordNos, incElems, cargas, apoios, deslocamentos=None, deformacoe
     
     return None
 
-
-
-#------------------------------------------------------------------------------
-
-
-
-
-
-
-# # Testando as funções
-# if __name__ == '__main__':
-#     ### DADOS DE ENTRADA
-#     # Coordenadas dos nós: dicionário contendo número do nó como chave e a tupla (coordenada X, coordenada Y) como valor
-#     coordNos = {1:(100., 0.),
-#                  2:(0., 100.),
-#                  3:(0., 0.)}
-
-#     # Incidência dos elementos: dicionário com o número do elemento como chave e a tupla (número do nó inicial, número do nó final) como valor
-#     incElems = {1:(1, 2),
-#                2:(3, 2),
-#                3:(3, 1)}
-
-#     # Material das barras: dicionário com o número do elemento da barra como chave e o valor do módulo de elasticidade como valor
-#     materiais = {1:20000.,
-#                  2:6900.,
-#                  3:6900.}
-
-#     # Seções transversais das barras: dicionário com o número do elemento da barra como chave e o valor da área como valor
-#     area = np.pi*11.3**2/4 #cm2, todas são iguais
-#     secoes = {1:area,
-#               2:area,
-#               3:area}
-
-#     # Cargas aplicadas aos nós na estrutura: dicionário contendo o número do nó onde existe carga aplicada e uma tupla (valor carga X, valor carga Y) como valor
-#     # * somente precisa conter os nós com carga
-#     cargas = {1:(0., -10.)}
-
-#     # Apoios aplicados aos nós na estrutura: dicionário contendo o número do nó onde existe o apoio aplicada e uma tupla (condição em X, condição em Y) como valor
-#     # Se a condição em uma direção for igual a 1, significa restringido, se for igual a zero, significa lire
-#     # * somente precisa conter os nós com apoio
-#     apoios = {2:(1, 0),
-#               3:(1, 1)}
-    
-#     # Gerando a visualização da malha com cargas e apoios
-#     visual_TP(coordNos, incElems, cargas, apoios)

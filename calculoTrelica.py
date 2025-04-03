@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 Criado na Segunda, dia 23 de Março de 2020, às 07:12:41
 
@@ -9,10 +7,6 @@ Módulo para a implementação dos procedimentos de cálculo de elementos finito
 """
 import numpy as np
 import funcoesAuxiliares as fa
-
-import sympy as sp #<-- para mostrar os valores para o texto!!!
-
-
 
 # Definição da função de solução
 def calculoTrelicaPlana(coordNos, incElems, materiais, secoes, cargas, apoios):
@@ -112,11 +106,7 @@ def calculoTrelicaPlana(coordNos, incElems, materiais, secoes, cargas, apoios):
             for col in range(4): #4 colunas na matriz de rigidez de cada elemento
                 #gerando a matriz de rigidez da estrutura
                 Kest[ indi[lin], indi[col] ] += kegs[elem][lin, col]
-    
-    # #valores para o texto:
-    # print(sp.latex(sp.Matrix(np.around(Kest, 3))).replace('.', ','))
-    
-    
+
     # Montagem do etor de forças nodais da estrutura
     for no in cargas:
         #posicionamento correto das cargas já pythonizado no índice: inicia em 0
@@ -160,21 +150,11 @@ def calculoTrelicaPlana(coordNos, incElems, materiais, secoes, cargas, apoios):
     # Separação da matriz de rigidez para o cálculo dos deslocamentos das reações 
     # de apoio
     Ku = Kest[:, GLslivr]
-    
-    # #valores para o texto:
-    # print(sp.latex(sp.Matrix(np.around(Ku, 3))).replace('.', ','))
-    
     Ku = Ku[GLslivr, :]
-    
-    # #valores para o texto:
-    # print(sp.latex(sp.Matrix(np.around(Ku, 3))).replace('.', ','))
-    
+
     Kr = Kest[:, GLslivr]
     Kr = Kr[GLsrest, :]
-    
-    # #valores para o texto:
-    # print(sp.latex(sp.Matrix(np.around(Kr, 3))).replace('.', ','))
-    
+
     # Separação do vetor de forças nodais para cálculo dos deslocamentos das reações 
     # de apoio
     Fu = Fest[GLslivr]
